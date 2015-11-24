@@ -1,8 +1,13 @@
 <?php
 
+use App\Task;
+use App\Tag;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class DatabaseSeeder
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -24,6 +29,9 @@ class DatabaseSeeder extends Seeder
         Model::reguard();
     }
 
+    /**
+     * @param $faker
+     */
     private function seedTasks($faker)
     {
         foreach (range(0,100) as $number) {
@@ -31,16 +39,19 @@ class DatabaseSeeder extends Seeder
             $task-> name = $faker->sentence;
             $task-> done = $faker->boolean;
             $task-> priority = $faker->randomDigit;
-            $task->save;
+            $task->save();
         }
     }
 
+    /**
+     * @param $faker
+     */
     private function seedTags($faker)
     {
         foreach (range(0,100) as $number) {
             $tag = new Tag();
             $tag-> name = $faker->word;
-            $tag->save;
+            $tag->save();
         }
     }
 }
